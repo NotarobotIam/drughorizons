@@ -25,3 +25,5 @@ $('view3d').onclick=()=>{if(viewer){viewer.zoomTo();viewer.render()}else render3
 if(window.ResizeObserver)new ResizeObserver(()=>{if(viewer){viewer.resize();viewer.render()}}).observe($('viewer'));
 
 function route(){let aspirin=$('reaction').value==='aspirin',a=aspirin?'Salicylic acid + acetic anhydride':'1,3-butadiene + ethene',b=aspirin?'Aspirin + acetic acid':'Cyclohexene';$('routebox').textContent=retro?b+' ⟵ '+a:a+' ⟶ '+b}route();$('reaction').onchange=route;$('direction').onclick=()=>{retro=!retro;$('direction').textContent='Direction: '+(retro?'retrosynthesis':'forward synthesis')+' ⇄';route()};
+
+document.addEventListener('dh-theme-change',()=>{if(viewer&&typeof viewer.setBackgroundColor==='function'){viewer.setBackgroundColor(getComputedStyle(document.documentElement).getPropertyValue('--sunk').trim());viewer.render()}});

@@ -75,3 +75,6 @@ body[data-page="guide"] #provenancePage{display:none}
 body[data-page="guide"] .context{display:none}
 
 .trial-therapies{margin-top:12px;padding:10px;background:var(--sunk);border:1px solid var(--line);border-radius:3px}.therapy-name{display:inline-block;font:500 13px var(--display);margin:3px 12px 3px 0}.therapy-name small{font:9px var(--data);color:var(--muted);text-transform:uppercase}
+
+/* Use the viewport with modest, aligned safe-area gutters. */
+.mastinner,.contextinner,.content{width:100%;max-width:none;margin-inline:0;padding-left:max(clamp(16px,2.5vw,48px),env(safe-area-inset-left,0px));padding-right:max(clamp(16px,2.5vw,48px),env(safe-area-inset-right,0px))}
