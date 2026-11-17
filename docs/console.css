@@ -73,3 +73,5 @@ body[data-page="guide"] #moleculeRule{display:none}
 body[data-page="guide"] #workspace{display:none}
 body[data-page="guide"] #provenancePage{display:none}
 body[data-page="guide"] .context{display:none}
+
+.trial-therapies{margin-top:12px;padding:10px;background:var(--sunk);border:1px solid var(--line);border-radius:3px}.therapy-name{display:inline-block;font:500 13px var(--display);margin:3px 12px 3px 0}.therapy-name small{font:9px var(--data);color:var(--muted);text-transform:uppercase}
