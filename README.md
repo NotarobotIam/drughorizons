@@ -52,14 +52,14 @@ Synthesis routes are educational examples, not validated predictions. Missing af
 
 Public website: https://notarobotiam.github.io/drughorizons/
 
-GitHub Pages publishes the `docs/` directory from the `main` branch. The `.nojekyll` file makes this a plain static deployment. No paid backend, dependency install, or API keys are required for the current feature set.
+GitHub Pages currently publishes the repository root from `main`. The generated root `index.html` loads the app with a `docs/` base URL. Publishing `main` → `/docs` is also supported. The `.nojekyll` file makes this a plain static deployment. No paid backend, dependency install, or API keys are required for the current feature set.
 
 After editing `dist/`, prepare and commit the deployment output:
 
 ```sh
 npm run check
 npm run build:pages
-git add dist docs scripts package.json README.md
+git add dist docs scripts package.json README.md index.html CNAME .nojekyll
 git commit -m "Update DrugHorizons"
 git push origin main
 ```
