@@ -10,7 +10,7 @@ Requirements: Python 3; Node.js 18+ for JavaScript syntax checks. No dependency 
 npm run dev
 ```
 
-Open http://localhost:8000. The server serves `dist/` at the origin root; absolute asset paths and page URLs rely on that layout.
+Open http://localhost:8000. The server serves `dist/` at the origin root; relative asset paths support both local development and the GitHub Pages project subdirectory.
 
 ```sh
 npm run check
@@ -48,11 +48,23 @@ Reports are curated, not automatically ingested. Saved trials and theme preferen
 
 Synthesis routes are educational examples, not validated predictions. Missing affinity, pKa, and confidence intervals are not fabricated. Registry-posted results are displayed when available. This is research information, not individual treatment advice.
 
-## Hosting
+## Hosting on GitHub Pages
 
-The existing private Sites deployment remains configured by `.openai/hosting.json`. This GitHub repository provides version control and collaboration; GitHub pushes do not automatically deploy the site. No GitHub Pages or Actions deployment has been enabled.
+Public website: https://notarobotiam.github.io/drughorizons/
 
-To host elsewhere, serve the contents of `dist/` at the site root and preserve directory index routing.
+GitHub Pages publishes the `docs/` directory from the `main` branch. The `.nojekyll` file makes this a plain static deployment. No paid backend, dependency install, or API keys are required for the current feature set.
+
+After editing `dist/`, prepare and commit the deployment output:
+
+```sh
+npm run check
+npm run build:pages
+git add dist docs scripts package.json README.md
+git commit -m "Update DrugHorizons"
+git push origin main
+```
+
+GitHub rebuilds Pages after updates to its configured source. `docs/` is generated; edit `dist/` and regenerate it. The current Sites deployment is separate, and this repository does not automatically update it. `.openai/hosting.json` records the existing Sites configuration and is not required by Pages.
 
 ## Assets and licensing
 
