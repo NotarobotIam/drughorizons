@@ -1,0 +1,11 @@
+# Local dependencies and runtime files
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+.DS_Store
+__pycache__/
+# Local work and deployment archives
+work/
+*.tar.gz
