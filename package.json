@@ -5,7 +5,14 @@
   "description": "Clinical trial discovery and molecular research workspace",
   "scripts": {
     "dev": "python3 -m http.server 8000 --directory dist --bind 0.0.0.0",
-    "check": "node --check dist/app.js && node --check dist/news.js && node --check dist/pages.js && node --check dist/theme.js && node --check dist/trial-details.js",
-    "build:pages": "node scripts/build-pages.mjs"
+    "check": "node --check dist/app.js && node --check dist/news.js && node --check dist/pages.js && node --check dist/theme.js && node --check dist/trial-details.js && node --check src/account.js",
+    "build:pages": "npm run build:auth && node scripts/build-pages.mjs",
+    "build:auth": "node scripts/build-auth.mjs"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "2.119.2"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
   }
 }

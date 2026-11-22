@@ -4,9 +4,10 @@ A clinical research discovery platform with trial exploration, sourced research 
 
 ## Run locally
 
-Requirements: Python 3; Node.js 18+ for JavaScript syntax checks. No dependency installation or build step is required.
+Requirements: Python 3; Node.js 18+ for JavaScript syntax checks. Install the pinned account-client dependencies with `npm ci` before building. Static deployment output is committed.
 
 ```sh
+npm ci
 npm run dev
 ```
 
@@ -44,7 +45,7 @@ The deployable application is in `dist/`: HTML page documents, shared vanilla Ja
 
 ClinicalTrials.gov records and PubChem properties/conformers are fetched from their public APIs in the visitor's browser. Registry records may lag individual site status. PubChem, 3Dmol.js, and Google Fonts require external network access. A labeled 2D fallback is used when a 3D conformer or renderer is unavailable.
 
-Reports are curated, not automatically ingested. Saved trials and theme preferences use browser-local storage. No accounts or cross-device synchronization are implemented.
+Reports are curated, not automatically ingested. Saved trials and theme preferences use browser-local storage. Supabase account UI is prepared on the feature branch; public registration remains disabled until email and callback setup is verified. Saved trials do not yet synchronize across devices. See `supabase/SETUP.md`.
 
 Synthesis routes are educational examples, not validated predictions. Missing affinity, pKa, and confidence intervals are not fabricated. Registry-posted results are displayed when available. This is research information, not individual treatment advice.
 
