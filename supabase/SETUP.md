@@ -31,3 +31,7 @@ When email confirmation, redirects, and custom SMTP are verified, set `publicReg
 ## Verified database checks
 
 Transaction-scoped synthetic users confirmed that the signup trigger creates profiles, a signed-in user sees and updates only their own profile, user IDs cannot be edited through the Data API role, and anonymous profile reads are denied. All fixture changes were rolled back. Supabase security advisors returned no warnings after revoking public execution of the automatically created `rls_auto_enable` helper.
+
+## Launch testing
+
+The owner reports custom SMTP saved and production Site URL/redirect configured. Public registration is enabled for live verification. Confirmation delivery, sign-in, and password recovery still require an owner-run test; do not treat configuration alone as a passed email-delivery test.
