@@ -16,7 +16,9 @@ create policy "Edit own profile" on public.profiles
   for update to authenticated using ((select auth.uid()) = id)
   with check ((select auth.uid()) = id);
 
-create or replace function public.create_user_profile()
+create schema if not exists private;
+revoke all on schema private from public, anon, authenticated;
+create or replace function private.create_user_profile()
 returns trigger language plpgsql security definer set search_path = ''
 as $$
 begin
@@ -24,8 +26,11 @@ begin
   return new;
 end;
 $$;
-revoke all on function public.create_user_profile() from public, anon, authenticated;
+revoke all on function private.create_user_profile() from public, anon, authenticated;
 create trigger on_auth_user_created
-  after insert on auth.users for each row execute procedure public.create_user_profile();
+  after insert on auth.users for each row execute procedure private.create_user_profile();
 -- Support accounts created before this migration.
 insert into public.profiles (id) select id from auth.users on conflict (id) do nothing;
+
+-- Keep the dashboard-managed automatic-RLS event trigger, but do not expose it as an RPC.
+revoke execute on function public.rls_auto_enable() from public, anon, authenticated;

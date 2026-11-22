@@ -1,12 +1,12 @@
 # DrugHorizons account setup
 
-Status: prepared schema only. No Supabase project is connected and live login has not been enabled.
+Status: connected to project `rfsnmhcxkhqqpgwxlhfi` (DrugHorizon). The profiles migration has been applied and database isolation tests passed. The account UI is implemented on the feature branch. Public registration is disabled until redirect URLs and email delivery are verified.
 
 1. Create a Supabase account and a project named DrugHorizons. Keep the database password in your password manager.
 2. Enable the email/password provider under Authentication. Keep email confirmation enabled.
-3. Configure the Auth Site URL as `https://www.drughorizon.com` and allow `https://www.drughorizon.com/account/` as a redirect URL. The account page will be implemented when the connection is configured.
-4. Apply `migrations/202611220001_profiles.sql` once through a migration tool or the project's SQL editor. It creates a private per-user application profile and a signup trigger.
-5. Provide the Project URL and public publishable key for browser integration. Never put the database password, secret key, or service_role key into GitHub or browser code.
+3. Configure the Auth Site URL as `https://www.drughorizon.com` and allow `https://www.drughorizon.com/account/` as a redirect URL. The account page handles PKCE callbacks and password recovery.
+4. The migration `migrations/202611220001_profiles.sql` is already applied to the connected project under migration name `create_private_profiles`. Do not reapply it. It creates a private per-user application profile and an internal signup trigger.
+5. `dist/supabase-config.js` contains only the project URL and public publishable key. Never put the database password, secret key, or service_role key into GitHub or browser code.
 6. Configure a production email sender before opening public registration; Supabase's default sender has delivery and recipient restrictions.
 
 ## Data model
@@ -25,3 +25,9 @@ References:
 - https://supabase.com/docs/guides/auth/passwords
 - https://supabase.com/docs/guides/auth/managing-user-data
 - https://supabase.com/docs/guides/database/postgres/row-level-security
+
+When email confirmation, redirects, and custom SMTP are verified, set `publicRegistrationEnabled: true` in `dist/supabase-config.js`, rebuild, test, and deploy. Until then, the Create account control stays hidden.
+
+## Verified database checks
+
+Transaction-scoped synthetic users confirmed that the signup trigger creates profiles, a signed-in user sees and updates only their own profile, user IDs cannot be edited through the Data API role, and anonymous profile reads are denied. All fixture changes were rolled back. Supabase security advisors returned no warnings after revoking public execution of the automatically created `rls_auto_enable` helper.
