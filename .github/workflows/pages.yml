@@ -23,6 +23,18 @@ jobs:
         with:
           name: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
           path: docs
+      - name: Wait for artifact availability
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ARTIFACT_NAME: github-pages-${{ github.run_id }}-${{ github.run_attempt }}
+        run: |
+          for attempt in {1..12}; do
+            count=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq "[.artifacts[] | select(.name == \"$ARTIFACT_NAME\")] | length")
+            if [ "$count" -gt 0 ]; then exit 0; fi
+            sleep 5
+          done
+          echo "Artifact did not become available in the API"
+          exit 1
       - name: Deploy website
         id: deployment
         uses: actions/deploy-pages@v4
