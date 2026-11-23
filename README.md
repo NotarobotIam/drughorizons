@@ -70,3 +70,7 @@ GitHub rebuilds Pages after updates to its configured source. `docs/` is generat
 ## Assets and licensing
 
 The clinical trial phase illustration and Molecular Horizon branding were created for DrugHorizons. External data, reporting, fonts, and rendering libraries remain subject to their respective terms. No open-source license has been selected for this repository.
+
+### Focused disease workspaces
+
+`/melanoma/` and `/alzheimers/` provide cited pathway introductions and condition-constrained registry searches. These start with recently updated drug/biologic records across all registration dates; the general explorer still starts with newly registered studies from the last 90 days. Pathway searches are keyword matches, not verified target classifications. Trial comparison supports up to three fetched records per page session. It compares registered designs and posted-results availability, not efficacy rankings. Trial data is fetched from ClinicalTrials.gov in the browser, not persisted in Supabase; this release does not add automated news ingestion or a trial-data warehouse.
