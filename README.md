@@ -74,3 +74,7 @@ The clinical trial phase illustration and Molecular Horizon branding were create
 ### Focused disease workspaces
 
 `/melanoma/` and `/alzheimers/` provide cited pathway introductions and condition-constrained registry searches. These start with recently updated drug/biologic records across all registration dates; the general explorer still starts with newly registered studies from the last 90 days. Pathway searches are keyword matches, not verified target classifications. Trial comparison supports up to three fetched records per page session. It compares registered designs and posted-results availability, not efficacy rankings. Trial data is fetched from ClinicalTrials.gov in the browser, not persisted in Supabase; this release does not add automated news ingestion or a trial-data warehouse.
+
+### Interactive body explorer
+
+The main workspace includes an original schematic 3D body (`src/body-map.js`) using Three.js. Pointer selection and the accessible body-system buttons share the existing trial filters. It supports drag/arrow rotation, zoom buttons, and reset. A Canvas 2D projection of the same 3D geometry preserves interaction when WebGL is unavailable. Regions are navigation aids rather than anatomical or diagnostic boundaries; no symptom profile is collected.
