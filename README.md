@@ -77,4 +77,6 @@ The clinical trial phase illustration and Molecular Horizon branding were create
 
 ### Interactive body explorer
 
-The main workspace includes an original schematic 3D body (`src/body-map.js`) using Three.js. Pointer selection and the accessible body-system buttons share the existing trial filters. It supports drag/arrow rotation, zoom buttons, and reset. A Canvas 2D projection of the same 3D geometry preserves interaction when WebGL is unavailable. Regions are navigation aids rather than anatomical or diagnostic boundaries; no symptom profile is collected.
+The main workspace includes a continuous MakeHuman hm08 human mesh (`src/body-map.js`) using Three.js. Pointer selection and the accessible body-system buttons share the existing trial filters. It supports drag/arrow rotation, zoom buttons, and reset. A Canvas 2D projection of the same 3D geometry preserves interaction when WebGL is unavailable. Regions are navigation aids rather than anatomical or diagnostic boundaries; no symptom profile is collected.
+
+The human mesh is adapted from MakeHuman’s CC0 base asset. Source, modifications, and full license are in `dist/assets/MAKEHUMAN-LICENSE.txt`. Surface-region assignments are approximate navigation zones, not an organ atlas.
